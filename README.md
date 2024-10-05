@@ -13,11 +13,6 @@ This project is a simple REST API built using Go that allows you to manage emplo
 - **Update Employee**: Modify the details of an existing employee.
 - **Delete Employee**: Remove an employee from the system.
 
-## What You’ll Need
-
-- **Go (1.16 or higher)** installed on your machine.
-- **Postman** or `curl` to send requests and test the API.
-
 ## Prerequisites
 
 To run this project, you’ll need:
