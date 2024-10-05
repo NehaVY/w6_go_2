@@ -22,21 +22,21 @@ func main() {
 	http.HandleFunc("/employees", getMyEmployee)
 	http.HandleFunc("/employees/", handleMyEmployeeByID)
 
-	fmt.Println("Server running on port 5656...")
+	fmt.Println("Server running is ok and running perfectly")
 	http.ListenAndServe(":5656", nil)
 }
 
 func getMyEmployee(w http.ResponseWriter, r *http.Request) {
-	//id, _ := strconv.Atoi(r.URL.Path[len("/employees"):])
 
 	if r.Method == "GET" {
 		getAllMyEmployees(w)
 	} else {
-		http.Error(w, "Invalid GET method", http.StatusMethodNotAllowed)
+		http.Error(w, "GET method is Invalid ", http.StatusMethodNotAllowed)
 	}
 }
 
 func handleMyEmployeeByID(w http.ResponseWriter, r *http.Request) {
+	// Based on the methods it decides which task is to be performed.
 	id, _ := strconv.Atoi(r.URL.Path[len("/employees/"):])
 
 	if r.Method == "GET" {
@@ -54,6 +54,7 @@ func handleMyEmployeeByID(w http.ResponseWriter, r *http.Request) {
 }
 
 func createMyEmployee(w http.ResponseWriter, r *http.Request) {
+	//Creates a new employee
 	var newEmployee Employee
 	json.NewDecoder(r.Body).Decode(&newEmployee)
 	newEmployee.EMPID = nextEMPID
@@ -70,6 +71,7 @@ func getAllMyEmployees(w http.ResponseWriter) {
 }
 
 func getMyEmployeeByID(w http.ResponseWriter, id int) {
+	// Gets the information of the employee with specific id
 	for _, employee := range employees {
 		if employee.EMPID == id {
 			json.NewEncoder(w).Encode(employee)
@@ -80,15 +82,16 @@ func getMyEmployeeByID(w http.ResponseWriter, id int) {
 }
 
 func updateMyEmployee(w http.ResponseWriter, r *http.Request) {
-	var updatedEmployee Employee
-	if err := json.NewDecoder(r.Body).Decode(&updatedEmployee); err != nil {
+	//Updating the employee information
+	var MyupdatedEmployee Employee
+	if err := json.NewDecoder(r.Body).Decode(&MyupdatedEmployee); err != nil {
 		http.Error(w, "Invalid input", http.StatusBadRequest)
 		return
 	}
 
 	for i, employee := range employees {
-		if employee.EMPID == updatedEmployee.EMPID {
-			employees[i] = updatedEmployee
+		if employee.EMPID == MyupdatedEmployee.EMPID {
+			employees[i] = MyupdatedEmployee
 			json.NewEncoder(w).Encode(employees[i])
 			return
 		}
@@ -98,6 +101,7 @@ func updateMyEmployee(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteMyEmployee(w http.ResponseWriter, id int) {
+	//Deletes the Employee by ID.
 	for i, employee := range employees {
 		if employee.EMPID == id {
 			employees = append(employees[:i], employees[i+1:]...)
