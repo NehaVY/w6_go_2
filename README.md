@@ -1,6 +1,7 @@
 # Employee Management API
 
-This project is a simple REST API built using Go that allows you to manage employee records. You can create, read, update, and delete employee data through basic API requests. This is perfect for learning how to perform basic CRUD (Create, Read, Update, Delete) operations using Go.
+This project is a simple REST API built using Go that allows you to manage employee records. You can create, read, update, and delete employee data through basic API requests. This is perfect for learning how to perform basic CRUD (Create, Read, Update, Delete) operations using Go. 
+I have used ChatGPT to write this Readme file.
 
 
 
