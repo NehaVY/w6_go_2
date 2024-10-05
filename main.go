@@ -22,7 +22,7 @@ func main() {
 	http.HandleFunc("/employees", getMyEmployee)
 	http.HandleFunc("/employees/", handleMyEmployeeByID)
 
-	fmt.Println("Server running is ok and running perfectly")
+	fmt.Println("Server running is ok and running perfectly on port 5656")
 	http.ListenAndServe(":5656", nil)
 }
 
